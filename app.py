@@ -1,8 +1,13 @@
-from flask import Flask, render_template, request
+from flask import Flask
+
+from flask import render_template
+from flask import request
+
 import pusher
 import mysql.connector
 import datetime
 import pytz
+
 
 # Conexión a la base de datos
 con = mysql.connector.connect(
@@ -16,10 +21,10 @@ app = Flask(__name__)
 
 # Configuración de Pusher
 pusher_client = pusher.Pusher(
-    app_id="1714541",
-    key="2df86616075904231311",
-    secret="2f91d936fd43d8e85a1a",
-    cluster="us2",
+    app_id="1873320",
+    key="99c33b12a2923c937f2d",
+    secret="3de27c12dd4f28811cde",
+    cluster="mt1",
     ssl=True
 )
 
@@ -33,9 +38,10 @@ def index():
         return "Error interno del servidor", 500
 
 
+
 # Ruta para guardar la inscripción a un curso
 @app.route("/inscripciones/guardar", methods=["POST"])
-def inscripciones_guardar():
+def inscripcion_guardar():
     nombre_curso = request.form["slNombreCurso"]
     telefono = request.form["txtTelefono"]
 
