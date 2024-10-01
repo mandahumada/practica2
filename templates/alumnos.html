@@ -13,38 +13,30 @@
     <title>Alumnos</title>
 </head>
 <body>
-    <!-- Nombre de la etiqueta Ejemplo: INPUT -->
-    <!-- # para ID -->
-    <!-- . para CLASS -->
-
-    <!-- form index 0 -->
-    <!-- #frmAlumnos -->
-    <!-- .formulario index 0 -->
     <div class="container">
-        <form method="post" id="frmAlumnos" class="formulario">
+        <form method="post" id="frmInscripcion" class="formulario">
             <div class="mb-1">
-                <label id="lblMatriculaFA" for="txtMatriculaFA">Matrícula:</label>
-                <input type="number" name="txtMatriculaFA" id="txtMatriculaFA" class="form-control" required="true" minlength="8" maxlength="8" data-rule-digits="true">
+                <label id="lblInscripcion" for="txtInscripcion">Nombre Curso:</label>
+                <input type="text" name="txtInscripcion" id="txtInscripcion" class="form-control" required="true" minlength="8" maxlength="8" data-rule-digits="true">
             </div>
             <div class="mb-1">
-                <label id="lblNombreApellidoFA" for="txtNombreApellidoFA">Nombre y Apellido:</label>
-                <input type="text" name="txtNombreApellidoFA" id="txtNombreApellidoFA" class="form-control" required="true" minlength="10" maxlength="25">
+                <label id="lblTelefono" for="txtTelefeno">Telefono:</label>
+                <input type="text" name="txtTelefeno" id="txtTelefeno" class="form-control" required="true" minlength="10" maxlength="25">
             </div>
             <div class="text-end">
                 <button id="btnGuardarFA" name="btnGuardarFA" class="btn btn-dark">Guardar</button>
             </div>
         </form>
-        <div id="divAlumnos"></div>
+        <div id="divInscripcion"></div>
     
-        <!-- table index 0 -->
         <table class="table table-sm">
             <thead>
                 <tr>
-                    <th>Matrícula</th>
-                    <th>Nombre y Apellido</th>
+                    <th>Nombre Curso</th>
+                    <th>Telefono</th>
                 </tr>
             </thead>
-            <tbody id="tbodyAlumnos"></tbody>
+            <tbody id="tbodyInscripcion"></tbody>
         </table>
     </div>
 
@@ -52,34 +44,40 @@
 
     <script>
         window.addEventListener("load", function (event) {
-            $("#frmAlumnos").validate({
+            $("#frmInscripcion").validate({
                 messages: {
-                    txtMatriculaFA: {
-                        required: "Ingresa la matrícula",
-                        minlength: "La matrícula es de 8 digitos",
-                        maxlength: "La matrícula es de 8 digitos",
-                        digits: "La matrícula es de solo números"
+                    txtInscripcion: {
+                        required: "Ingresa el nombre del curso",
+                        minlength: "el nombre debe llevar mas de 3 caracteres",
+                        // maxlength: "La matrícula es de 8 digitos",
+                        // digits: "La matrícula es de solo números"
                     },
-                    txtNombreApellidoFA: {
-                        required: "Ingresa tu nombre y apellido",
-                        minlength: "Ingresa más o 10 caracteres",
-                        maxlength: "Ingresa menos o 25 caracteres"
+                    txtTelefeno: {
+                        required: "Ingresa tu numero de telefono",
+                        minlength: "Ingresa 10 caracteres",
+                        maxlength: "Ingresa 10 caracteres"
                     }
                 },
                 rules: {
-                    txtMatriculaFA: {
-                        // required: true,
-                        // minlength: 8,
-                        // maxlength: 8
-                        // digits: true
+                    txtInscripcion: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 50
+                        //digits: true
+                    },
+
+                    txtTelefono: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10
                     }
                 }
             })
 
-            $("#frmAlumnos").submit(function (event) {
+            $("#frmInscripcion").submit(function (event) {
                 event.preventDefault()
 
-                $.post("/alumnos/guardar", $(this).serialize(), function (respuesta) {
+                $.post("/inscripcion/guardar", $(this).serialize(), function (respuesta) {
                     console.log(respuesta)
                 })
             })
