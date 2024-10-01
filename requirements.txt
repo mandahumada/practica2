@@ -3,3 +3,7 @@ Gunicorn
 pusher
 mysql-connector-python
 pytz
+Flask==2.1.1
+mysql-connector-python==8.0.28
+pusher==1.0.1
+pytz==2024.1
