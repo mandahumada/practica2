@@ -40,7 +40,7 @@ def index():
 
 
 # Ruta para guardar la inscripción a un curso
-@app.route("/inscripcion/guardar", methods=["POST"])
+@app.route("/inscripciones/guardar", methods=["POST"])
 def inscripcion_guardar():
     nombre_curso = request.form["slNombreCurso"]
     telefono = request.form["txtTelefono"]
@@ -65,8 +65,8 @@ def inscripcion_guardar():
     return "Inscripción guardada con éxito"
 
 # Ruta para buscar las inscripciones registradas
-@app.route("/inscripcion/buscar", methods=["GET"])
-def inscripcion_buscar():
+@app.route("/inscripciones/buscar", methods=["GET"])
+def inscripciones_buscar():
     if not con.is_connected():
         con.reconnect()
 
