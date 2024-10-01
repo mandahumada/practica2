@@ -41,7 +41,7 @@ def index():
 
 # Ruta para guardar la inscripción a un curso
 @app.route("/inscripciones/guardar", methods=["POST"])
-def inscripcion_guardar():
+def inscripciones_guardar():
     nombre_curso = request.form["slNombreCurso"]
     telefono = request.form["txtTelefono"]
 
