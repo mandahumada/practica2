@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <!-- Formulario para inscribirse a un curso -->
-        <form method="post" id="frmInscripcion" class="formulario">
+        <form method="post" id="frmInscripciones" class="formulario">
             <div class="mb-1">
                 <label id="lblNombreCurso" for="slNombreCurso">Nombre Curso:</label>
                 <select name="slNombreCurso" id="slNombreCurso" class="form-control" required="true">
@@ -56,7 +56,7 @@
     <script>
         window.addEventListener("load", function (event) {
             // Validación del formulario
-            $("#frmInscripcion").validate({
+            $("#frmInscripciones").validate({
                 messages: {
                     slNombreCurso: {
                         required: "Seleccione un curso"
@@ -71,10 +71,10 @@
             });
 
             // Envío de datos al servidor
-            $("#frmInscripcion").submit(function (event) {
+            $("#frmInscripciones").submit(function (event) {
                 event.preventDefault();
 
-                $.post("/inscripcion/guardar", $(this).serialize(), function (respuesta) {
+                $.post("/inscripciones/guardar", $(this).serialize(), function (respuesta) {
                     console.log(respuesta);
                     // Actualizar la tabla después de guardar
                     buscarInscripciones();
@@ -83,15 +83,15 @@
 
             // Función para obtener los datos registrados de la tabla y mostrarlos en la tabla
             function buscarInscripciones() {
-                $.get("/inscripcion/buscar", function (respuesta) {
+                $.get("/inscripciones/buscar", function (respuesta) {
                     $("#tbodyInscripciones").html(""); // Limpiamos el contenido anterior
 
                     // Recorremos los datos devueltos y los añadimos a la tabla
-                    respuesta.forEach(function(inscripcion) {
+                    respuesta.forEach(function(inscripciones) {
                         $("#tbodyInscripciones").append(`
                             <tr>
-                                <td>${inscripcion[1]}</td>
-                                <td>${inscripcion[2]}</td>
+                                <td>${inscripciones[1]}</td>
+                                <td>${inscripciones[2]}</td>
                             </tr>
                         `);
                     });
