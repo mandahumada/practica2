@@ -33,9 +33,11 @@
             </div>
         </form>
 
+        <!-- Div para mostrar mensajes -->
         <div id="divInscripciones"></div>
     
-        <!-- Tabla vacía para mostrar datos si se necesita -->
+        <!-- Tabla para mostrar los datos registrados -->
+        <h3 class="mt-4">Datos Registrados</h3>
         <table class="table table-sm">
             <thead>
                 <tr>
@@ -43,7 +45,9 @@
                     <th>Teléfono</th>
                 </tr>
             </thead>
-            <tbody id="tbodyInscripciones"></tbody>
+            <tbody id="tbodyInscripciones">
+                <!-- Aquí se mostrarán los datos desde el servidor -->
+            </tbody>
         </table>
     </div>
 
@@ -72,8 +76,30 @@
 
                 $.post("/inscripciones/guardar", $(this).serialize(), function (respuesta) {
                     console.log(respuesta);
+                    // Actualizar la tabla después de guardar
+                    buscarInscripciones();
                 });
             });
+
+            // Función para obtener los datos registrados de la tabla y mostrarlos en la tabla
+            function buscarInscripciones() {
+                $.get("/inscripciones/buscar", function (respuesta) {
+                    $("#tbodyInscripciones").html(""); // Limpiamos el contenido anterior
+
+                    // Recorremos los datos devueltos y los añadimos a la tabla
+                    respuesta.forEach(function(inscripciones) {
+                        $("#tbodyInscripciones").append(`
+                            <tr>
+                                <td>${inscripciones[1]}</td>
+                                <td>${inscripciones[2]}</td>
+                            </tr>
+                        `);
+                    });
+                });
+            }
+
+            // Llamar a la función para cargar los datos al cargar la página
+            buscarInscripciones();
         });
     </script>    
 </body>
