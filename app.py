@@ -28,9 +28,14 @@ pusher_client = pusher.Pusher(
 )
 
 # Ruta principal para mostrar la página de inscripciones
-@app.route("/")
+# Ruta principal para mostrar la página de inscripciones
+@app.route("/", methods=["GET"])
 def index():
-    return render_template("inscripciones.html")
+    try:
+        return render_template("inscripciones.html")
+    except Exception as e:
+        print(f"Error al renderizar la página: {e}")
+        return "Error interno del servidor", 500
 
 # Ruta para guardar la inscripción a un curso
 @app.route("/inscripciones/guardar", methods=["POST"])
