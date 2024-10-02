@@ -122,6 +122,7 @@
 
     // Escuchar el evento 'nuevaInscripcion' que envía el backend
     canal.bind('nuevaInscripcion', function(data) {
+console.log("Datos recibidos desde Pusher:", data);
         // Cuando recibimos el evento, actualizamos la tabla con la nueva inscripción
         $("#tbodyInscripciones").append(`
             <tr>
