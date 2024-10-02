@@ -102,5 +102,35 @@
             buscarInscripciones();
         });
     </script>    
+
+
+
+
+
+
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
+<script>
+    // Configurar Pusher
+    var pusher = new Pusher('99c33b12a2923c937f2d', {
+        cluster: 'mt1',
+        encrypted: true
+    });
+
+    // Suscribirse al canal que creaste
+    var canal = pusher.subscribe('canalInscripciones');
+
+    // Escuchar el evento 'nuevaInscripcion' que envía el backend
+    canal.bind('nuevaInscripcion', function(data) {
+        // Cuando recibimos el evento, actualizamos la tabla con la nueva inscripción
+        $("#tbodyInscripciones").append(`
+            <tr>
+                <td>${data.curso}</td>
+                <td>${data.telefono}</td>
+            </tr>
+        `);
+    });
+</script>
+
 </body>
 </html>
