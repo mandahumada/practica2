@@ -39,16 +39,25 @@
         <!-- Tabla para mostrar los datos registrados -->
         <h3 class="mt-4">Datos Registrados</h3>
         <table class="table table-sm">
-            <thead>
-                <tr>
-                    <th>Curso</th>
-                    <th>Teléfono</th>
-                </tr>
-            </thead>
-            <tbody id="tbodyInscripciones">
-                <!-- Aquí se mostrarán los datos desde el servidor -->
-            </tbody>
-        </table>
+    <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="tbodyInscripciones">
+        <!-- Aquí se mostrarán los datos desde el servidor -->
+        <tr>
+            <td>Curso 1</td>
+            <td>1234567890</td>
+            <td>
+                <button class="btn btn-primary btn-sm mr-2 editar-inscripcion">Editar</button>
+                <button class="btn btn-danger btn-sm eliminar-inscripcion">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
