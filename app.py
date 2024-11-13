@@ -3,11 +3,18 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
+from flask_cors import CORS, cross_origin
+
 import pusher
 import mysql.connector
 import datetime
 import pytz
 
+con = mysql.connector.connect(
+)
+
+app = Flask(__name__)
+CORS(app)
 
 # Conexión a la base de datos
 con = mysql.connector.connect(
